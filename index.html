@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>[T]New Tab</title>
+        <style>
+            body {
+                background-color: rgb(250, 250, 250);
+                font-family: arial;
+            }
+            nav {
+                display: flex;
+                background-color: rgb(240, 240, 240);
+                height: 20px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                justify-content: space-evenly;
+            }
+            .center {
+                text-align: center;
+            }
+            a {
+                color: rgb(0, 99, 148);
+                text-decoration: none;
+            }
+            #darkmodeButton {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                margin-left: 90%;
+                border: none;
+                border-radius: 2px;
+                background-color: rgb(235, 235, 235);
+            }
+            #canvi {
+                margin-left: -10px;
+                margin-top: -10px;
+                position: absolute;
+            }
+                
+            
+        </style>
+        
+        
+    </head>
+    <body>
+        <canvas id = "canvi"></canvas>
+        <nav>
+            <a href = "https://mlpchinese.com/accounts/login/">MLP(Chinese)</a>
+            <a href = "https://www.prodigygame.com/">Prodigy</a>
+            <a href = "https://homework.russianschool.com/StudentPortal/#/home">RSM</a>
+            <a href = "https://www.khanacademy.org/computing/computer-programming">Khan Academy</a>
+            <a href = "https://github.com/ThomasYiCui">Github</a>
+        </nav>
+        <h1 class = "center" style = "margin-top: 20%">Thomas Tab</h1>
+        <p id = "MotivationalQuate" class = "center">Motivational Quote</p>
+        <div id = "square1"></div>
+        <script>
+            var bodyColor = 240;
+            var targetBodyColor = 20;
+            var MotivationalQuates = [
+                "EMOTIONAL DAMAGE",
+                "Never Gonna Give You Up",
+            ];
+            function getMotivationalQuate() {
+                document.getElementById("MotivationalQuate").innerHTML = MotivationalQuates[Math.round(Math.random(0, 1) * (MotivationalQuates.length - 0.5))]
+            }
+            getMotivationalQuate();
+        </script>
+    </body>
+</html>
