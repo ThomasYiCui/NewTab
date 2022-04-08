@@ -14,6 +14,7 @@
                 height: 20px;
                 padding-top: 5px;
                 padding-bottom: 5px;
+                margin-top: -10px;
                 justify-content: space-evenly;
             }
             .center {
@@ -23,7 +24,8 @@
                 color: rgb(0, 99, 148);
                 text-decoration: none;
             }
-            #darkmodeButton {
+            #calcButton {
+                margin-top: 10px;
                 position: absolute;
                 width: 20px;
                 height: 20px;
@@ -31,6 +33,15 @@
                 border: none;
                 border-radius: 2px;
                 background-color: rgb(235, 235, 235);
+            }
+            #calculater {
+                margin-top: -150px;
+                margin-left: 10px;
+                position: fixed;
+                width: 150px;
+                height: 200px;
+                background-color: rgb(230, 230, 230);
+                opacity: 0%;
             }
             #canvi {
                 margin-left: -10px;
@@ -52,18 +63,30 @@
             <a href = "https://www.khanacademy.org/computing/computer-programming">Khan Academy</a>
             <a href = "https://github.com/ThomasYiCui">Github</a>
         </nav>
+        <button id = "calcButton" onclick = "calc()">C</button>
         <h1 class = "center" style = "margin-top: 20%">Thomas Tab</h1>
         <p id = "MotivationalQuate" class = "center">Motivational Quote</p>
         <div id = "square1"></div>
+        <div id = "calculater"><h4 class = "center" style = "margin-top: 4px">Calculater</h4>
+        <button onclick = "noCalc()">X</button>
+        </div>
         <script>
             var bodyColor = 240;
             var targetBodyColor = 20;
             var MotivationalQuates = [
                 "EMOTIONAL DAMAGE",
                 "Never Gonna Give You Up",
+                "I will send you to Jesus",
+                "1 + 1 = 2!",
             ];
             function getMotivationalQuate() {
                 document.getElementById("MotivationalQuate").innerHTML = MotivationalQuates[Math.round(Math.random(0, 1) * (MotivationalQuates.length - 0.5))]
+            }
+            function calc() {
+                document.getElementById("calculater").style = "margin-top: -150px; margin-left: 10px; position: fixed; width: 150px; height: 200px; background-color: rgb(230, 230, 230); opacity: 100%;";
+            }
+            function noCalc() {
+                document.getElementById("calculater").style = "margin-top: -150px; margin-left: 10px; position: fixed; width: 150px; height: 200px; background-color: rgb(230, 230, 230); opacity: 0%;";
             }
             getMotivationalQuate();
         </script>
