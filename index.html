@@ -138,19 +138,21 @@ function logo() {
     this.fade = 0;
     this.size = 0;
     this.eyeSize = 0;
+    this.gold = 0;
 };
 logo.prototype.draw = function() {
     fill(0, 0, 255, this.fade);
-    ellipse(this.x, this.y - 50, 50 + this.size, 50 + this.size, 0);
+    ellipse(this.x, this.y - 70, 50 + this.size, 50 + this.size, 0);
     fill(0, 0, 0);
-    ellipse(this.x, this.y - 50, 45 + this.size, 45 + this.size, 0);
+    ellipse(this.x, this.y - 70, 45 + this.size, 45 + this.size, 0);
     fill(0, 0, 255, this.fade);
-    ellipse(this.x - 20, this.y - 50, 5, this.eyeSize, 0);
-    ellipse(this.x + 20, this.y - 50, 5, this.eyeSize, 0);
-    text("<", this.x - 70 - this.off, this.y - 18, 100);
-    text(">", this.x + 70 + this.off, this.y - 18, 100);
-    text("I A I C", this.x, this.y + 70, 60);
-    text("International Artificial Intellegence Cooperation", this.x, this.y + 90, 15)
+    ellipse(this.x - 20, this.y - 70, 5, this.eyeSize, 0);
+    ellipse(this.x + 20, this.y - 70, 5, this.eyeSize, 0);
+    text("<", this.x - 70 - this.off, this.y - 38, 100);
+    text(">", this.x + 70 + this.off, this.y - 38, 100);
+    text("I A I C", this.x, this.y + 50, 60);
+    text("International Artificial Intellegence Cooperation", this.x, this.y + 70, 15)
+    text("Made By: Thomas", this.x, this.y + 90, 15);
 };
 logo.prototype.update = function() {
     this.fade = lerp(this.fade, 1, 0.005);
@@ -161,6 +163,13 @@ logo.prototype.update = function() {
         this.size += 5;
         this.off += 5;
         this.eyeSize += 5;
+        let saveObj = [
+            {
+              item: "Gold",
+              quantity: 23,
+            },
+        ];
+        save(saveObj, "moneyCode.json")
     }
 };
 var Logo = new logo();
