@@ -2,109 +2,176 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>[T]New Tab</title>
+        <title>New Tab</title>
         <style>
             body {
-                background-color: rgb(250, 250, 250);
-                font-family: arial;
-            }
-            nav {
-                display: flex;
-                background-color: rgb(240, 240, 240);
-                height: 20px;
-                padding-top: 5px;
-                padding-bottom: 5px;
-                margin-top: -10px;
-                justify-content: space-evenly;
-            }
-            .center {
-                text-align: center;
-            }
-            .number {
-                margin-right: 2px;
-                width: 45px;
-                border: none;
-                background-color: rgb(200, 200, 200);
-            }
-            a {
-                color: rgb(0, 99, 148);
-                text-decoration: none;
-            }
-            #calcButton {
-                margin-top: 10px;
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                margin-left: 90%;
-                border: none;
-                border-radius: 2px;
-                background-color: rgb(235, 235, 235);
-            }
-            #calculater {
-                margin-top: -150px;
-                margin-left: 10px;
                 position: fixed;
-                width: 150px;
-                height: 200px;
-                background-color: rgb(230, 230, 230);
-                opacity: 0%;
             }
             #canvi {
-                margin-left: -10px;
-                margin-top: -10px;
-                position: absolute;
+                margin: -10px;
             }
-                
-            
         </style>
-        
-        
     </head>
-    <body>
-        <canvas id = "canvi"></canvas>
-        <nav>
-            <a href = "https://mlpchinese.com/accounts/login/">MLP(Chinese)</a>
-            <a href = "https://www.prodigygame.com/">Prodigy</a>
-            <a href = "https://homework.russianschool.com/StudentPortal/#/home">RSM</a>
-            <a href = "https://www.khanacademy.org/computing/computer-programming">Khan Academy</a>
-            <a href = "https://github.com/ThomasYiCui">Github</a>
-        </nav>
-        <button id = "calcButton" onclick = "calc()">C</button>
-        <h1 class = "center" style = "margin-top: 20%">Thomas Tab</h1>
-        <p id = "MotivationalQuate" class = "center">Motivational Quote</p>
-        <div id = "square1"></div>
-        <div id = "calculater"><h4 class = "center" style = "margin-top: 4px">Calculater</h4>
-        <button onclick = "noCalc()">X</button>
-        <br>
-        <button onclick = "noCalc()" class = "number">1</button>
-        <button onclick = "noCalc()" class = "number">2</button>
-        <button onclick = "noCalc()" class = "number">3</button>
-        <button onclick = "noCalc()" class = "number">4</button>
-        <button onclick = "noCalc()" class = "number">5</button>
-        <button onclick = "noCalc()" class = "number">6</button>
-        <button onclick = "noCalc()" class = "number">7</button>
-        <button onclick = "noCalc()" class = "number">8</button>
-        <button onclick = "noCalc()" class = "number">9</button>
-        </div>
-        <script>
-            var bodyColor = 240;
-            var targetBodyColor = 20;
-            var MotivationalQuates = [
-                "EMOTIONAL DAMAGE",
-                "Never Gonna Give You Up",
-                "I will send you to Jesus",
-                "1 + 1 = 2!",
-            ];
-            function getMotivationalQuate() {
-                document.getElementById("MotivationalQuate").innerHTML = MotivationalQuates[Math.round(Math.random(0, 1) * (MotivationalQuates.length - 0.5))]
+<body>
+    <canvas id="canvi"></canvas>
+    <script>
+        // makes it more like javascript
+        var canvas = document.getElementById("canvi");
+        var ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        var mouseX = 0;
+        var mouseY = 0;
+        var clicked = false
+        var keys = [];
+        canvas.addEventListener("mousemove", function(e) {
+            var cRect = canvas.getBoundingClientRect();
+            mouseX = Math.round(e.clientX - cRect.left);
+            mouseY = Math.round(e.clientY - cRect.top);
+        });
+        canvas.addEventListener("mousedown", function(e) {
+            dragged = true;
+        }, false);
+        canvas.addEventListener("mouseup", function(e) {
+            if(dragged === true) {
+                clicked = true;
+                dragged = false;
             }
-            function calc() {
-                document.getElementById("calculater").style = "margin-top: -150px; margin-left: 10px; position: fixed; width: 150px; height: 200px; background-color: rgb(230, 230, 230); opacity: 100%;";
+        });
+        window.addEventListener("keydown", keysPressed, false);
+        window.addEventListener("keyup", keysReleased, false);
+        function keysPressed(e) {
+            // store an entry for every key pressed
+            keys[e.keyCode] = true;
+            e.preventDefault();
+        }
+        function keysReleased(e) {
+            // mark keys that were released
+            keys[e.keyCode] = false;
+        }
+        function cos(r) {
+            return Math.cos(r);
+        }
+        function sin(r) {
+            return Math.sin(r);
+        }
+        function atan2(y, x) {
+            return Math.atan2(y, x);
+        }
+        function round(num) {
+            return Math.round(num);
+        }
+        function random(min, max) {
+            return min + Math.random(0, 1) * (max - min);
+        }
+        function dist(x, y, x2, y2) {
+            var a = x - x2;
+            var b = y - y2;
+            return Math.sqrt(a * a + b * b);
+        }
+        function text(txt, x, y, size) {
+            ctx.font = size + "px Arial";
+            ctx.fillText(txt, x, y);
+        }
+        function fill(r, g, b, a) {
+            if(a === undefined) {
+                a = 1;
             }
-            function noCalc() {
-                document.getElementById("calculater").style = "margin-top: -150px; margin-left: 10px; position: fixed; width: 150px; height: 200px; background-color: rgb(230, 230, 230); opacity: 0%;";
+            ctx.fillStyle = "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+        }
+        function stroke(r, g, b) {
+            ctx.strokeStyle = "rgb(" + r + ", " + g + ", " + b + ")";
+        }
+        function rect(x, y, w, h, r) {
+            ctx.save();
+            ctx.translate(x, y)
+            ctx.rotate(r);
+            ctx.fillRect(0, 0, w, h);
+            ctx.restore();
+        }
+        function strokeWeight(s) {
+            ctx.lineWidth = s;
+        }
+        function eRect(x, y, w, h, col) {
+            ctx.beginPath();
+            stroke(col[0], col[1], col[2]);
+            ctx.rect(x, y, w, h);
+            ctx.stroke();
+        }
+        function start() {
+            var myVar = setInterval(draw, 1);
+        }
+        function textAlign(align) {
+            ctx.textAlign = align;
+        }
+        function lerp(a, b, t) {
+            return a + (b - a) * t;
+        }
+        function dist2(a, b, d) {
+            return (a - b) > -d && (a - b) < d;
+        }
+        function ellipse(x, y, radiusX, radiusY, rotation) {
+            ctx.beginPath();
+            ctx.ellipse(x, y, radiusX, radiusY, rotation, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        function eEllipse(x, y, radiusX, radiusY, rotation) {
+            ctx.beginPath();
+            ctx.ellipse(x, y, radiusX, radiusY, rotation, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+        function constrain(num, m, ma) {
+            if(num < m) {
+                num = m;
+            } else if(num > ma) {
+                num = ma;
             }
-            getMotivationalQuate();
-        </script>
+            return num;
+        }
+    </script>
+    <script>
+textAlign("center");
+function logo() {
+    this.x = canvas.width/2;
+    this.y = canvas.height/2;
+    this.off = 0;
+    this.fade = 0;
+    this.size = 0;
+    this.eyeSize = 0;
+};
+logo.prototype.draw = function() {
+    fill(0, 0, 255, this.fade);
+    ellipse(this.x, this.y - 50, 50 + this.size, 50 + this.size, 0);
+    fill(0, 0, 0);
+    ellipse(this.x, this.y - 50, 45 + this.size, 45 + this.size, 0);
+    fill(0, 0, 255, this.fade);
+    ellipse(this.x - 20, this.y - 50, 5, this.eyeSize, 0);
+    ellipse(this.x + 20, this.y - 50, 5, this.eyeSize, 0);
+    text("<", this.x - 70 - this.off, this.y - 18, 100);
+    text(">", this.x + 70 + this.off, this.y - 18, 100);
+    text("I A I C", this.x, this.y + 70, 60);
+    text("International Artificial Intellegence Cooperation", this.x, this.y + 90, 15)
+};
+logo.prototype.update = function() {
+    this.fade = lerp(this.fade, 1, 0.005);
+    this.off = lerp(this.off, 20, 0.01);
+    this.eyeSize = lerp(this.eyeSize, 5, 0.01);
+    this.size = lerp(this.size, 0, 0.01)
+    if(clicked) {
+        this.size += 5;
+        this.off += 5;
+        this.eyeSize += 5;
+    }
+};
+var Logo = new logo();
+function draw() {
+    fill(0, 0, 0);
+    rect(0, 0, canvas.width, canvas.height);
+    Logo.draw();
+    Logo.update();
+    clicked = false;
+};
+start();
+    </script>
     </body>
 </html>
