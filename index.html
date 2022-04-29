@@ -163,13 +163,15 @@ logo.prototype.update = function() {
         this.size += 5;
         this.off += 5;
         this.eyeSize += 5;
-        let saveObj = [
+        var saveObj = [
             {
               item: "Gold",
               quantity: 23,
             },
         ];
-        save(saveObj, "moneyCode.json")
+        save(saveObj, "moneyCode.json");
+        var jsonData= require('./moneyCode.json'); 
+        alert(jsonData);
     }
 };
 var Logo = new logo();
